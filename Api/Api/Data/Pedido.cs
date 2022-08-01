@@ -1,4 +1,4 @@
-﻿namespace Api.Controllers.Data
+﻿namespace Api.Data
 {
     public class Pedido
     {

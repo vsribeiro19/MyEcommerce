@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Api.Controllers.Data
+namespace Api.Data
 {
     public class Cliente
     {
