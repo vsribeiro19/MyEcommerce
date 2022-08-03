@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Api.Model;
 
-namespace Api.Data
+namespace Api
 {
     public class Item
     {
-        [Key]
+        //[Key]
         public int IdItem { get; set; }
         public string DescricaoItem { get; set; }
         public int QtdItem { get; set; }
@@ -13,7 +13,7 @@ namespace Api.Data
         public int IdCliente { get; set; }
         public Item(Cliente cliente)
         {
-            this.IdCliente = IdCliente;
+            IdCliente = IdCliente;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Api.Data
+﻿namespace Api.Model
 {
     public class Pedido
     {

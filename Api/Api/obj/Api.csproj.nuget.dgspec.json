@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\MyEcommerce\\Api\\Api\\Api.csproj": {}
+    "C:\\dev\\MyEcommerce\\API\\Api\\Api.csproj": {}
   },
   "projects": {
-    "C:\\dev\\MyEcommerce\\Api\\Api\\Api.csproj": {
+    "C:\\dev\\MyEcommerce\\API\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\MyEcommerce\\Api\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\dev\\MyEcommerce\\API\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "C:\\dev\\MyEcommerce\\Api\\Api\\Api.csproj",
+        "projectPath": "C:\\dev\\MyEcommerce\\API\\Api\\Api.csproj",
         "packagesPath": "C:\\Users\\victor.ribeiro\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\MyEcommerce\\Api\\Api\\obj\\",
+        "outputPath": "C:\\dev\\MyEcommerce\\API\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -47,6 +47,10 @@
               "target": "Package",
               "version": "[2.0.123, )"
             },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.0.0-preview3.22168.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -62,10 +66,6 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.1, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[5.6.3, )"
             }
           },
           "imports": [
