@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Data
+﻿namespace Api.Data
 {
     public class Item
     {

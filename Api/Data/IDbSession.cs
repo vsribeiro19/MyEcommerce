@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace WebApplication1.Data
+namespace Api.Data
 {
     public interface IDbSession
     {

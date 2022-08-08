@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Home - AppMyEcommerce</title>
+</head>
+<body>
+    <header>
+        <navbar class="navbar">
+            <h1 class="title">MyEcommerce</h1>
+            <nav class="nav">
+                <a href="#">Novo Usuário</a>
+                <a href="#">Novo Item</a>
+            </nav>
+        </navbar>
+    </header>
+    <section ng-controller="clientController">
+        <div ng-repeat="item in listagemItems" class="card_item">
+            <div class="image_item">
+                <img src="{{item.link}}" />
+            </div>
+            <div class="descricao_item">
+                <p>
+                    {{item.descricao}}
+                </p>
+            </div>
+            <div class="price_item">
+                <h2>{{item.valor}}</h2>
+            </div>
+            <div class="buy_item">
+                <button class="btn_buy_item">Comprar agora</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

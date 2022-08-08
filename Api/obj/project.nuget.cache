@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ei8n4W0ln8TNNeCYR1agkO+wpXO73IaIq3A739dZGL9GkYbqMF7jii6AD1G/O5HXv3NaTQ6YEbdWGDkVhp10Zw==",
+  "dgSpecHash": "egQkOhKRA0+0O9oR39gUDCRes8a+GAd7fdyswU6F+paEqF4/Ua/ZfbGpXC2DcbJ6QK1SV7TJlIfAVyihlSQ0hg==",
   "success": true,
   "projectFilePath": "C:\\dev\\MyEcommerce\\Api\\Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\victor.ribeiro\\.nuget\\packages\\angularjs\\1.8.2\\angularjs.1.8.2.nupkg.sha512",
     "C:\\Users\\victor.ribeiro\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\victor.ribeiro\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",
     "C:\\Users\\victor.ribeiro\\.nuget\\packages\\k4os.compression.lz4\\1.2.6\\k4os.compression.lz4.1.2.6.nupkg.sha512",

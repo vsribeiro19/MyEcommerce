@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using WebApplication1.Data;
-using WebApplication1.Repositories;
+using Api.Data;
+using Api.Repositories;
 
-namespace WebApplication1.Controllers
+namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -15,42 +15,35 @@ namespace WebApplication1.Controllers
             _itemRepo = itemRepo;
         }
         [HttpGet]
-        [Route("itens")]
+        [Route("getAllItems")]
         public async Task<IActionResult> GetItensAsync()
         {
             var result = await _itemRepo.GetItemAsync();
             return Ok(result);
         }
         [HttpGet]
-        [Route("item")]
+        [Route("getById")]
         public async Task<IActionResult> GetTodoItemByIdAsync(int id)
         {
             var item = await _itemRepo.GetItemByIdAsync(id);
             return Ok(item);
         }
-        [HttpGet]
-        [Route("itenscontador")]
-        public async Task<IActionResult> GetTodosAndCountAsync()
-        {
-            var resultado = await _itemRepo.GetItemsEContadorAsync();
-            return Ok(resultado);
-        }
         [HttpPost]
-        [Route("criaritem")]
+        [Route("create")]
         public async Task<IActionResult> SaveAsync(Item novoItem)
         {
             var result = await _itemRepo.SaveAsync(novoItem);
             return Ok(result);
         }
         [HttpPost]
-        [Route("atualizastatus")]
+        [Route("update")]
         public async Task<IActionResult> UpdateTodoStatusAsync(Item atualizaItem)
         {
             var result = await _itemRepo.UpdateItemStatusAsync(atualizaItem);
             return Ok(result);
         }
         [HttpDelete]
-        [Route("deletaitem")]
+        [Route("delete")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             var resultado = await _itemRepo.DeleteAsync(id);

@@ -1,11 +1,11 @@
-﻿using WebApplication1.Data;
+﻿using Api.Data;
 using Dapper;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace WebApplication1.Repositories
+namespace Api.Repositories
 {
     public class ItemRepository : IItemRepository
     {
@@ -27,32 +27,31 @@ namespace WebApplication1.Repositories
         {
             using (var conn = _db.Connection)
             {
-                string query = "SELECT * FROM Tarefas WHERE Id = @id";
+                string query = "SELECT * FROM item WHERE idItem = @id";
                 Item item = await conn.QueryFirstOrDefaultAsync<Item>
                     (sql: query, param: new { id });
                 return item;
             }
         }
-        public async Task<ItemContainer> GetItemsEContadorAsync()
-        {
-            using (var conn = _db.Connection)
-            {
-                string query =
-                    @"SELECT COUNT(*) FROM item
-    	          SELECT * FROM Items";
-                var reader = await conn.QueryMultipleAsync(sql: query);
-                return new ItemContainer
-                {
-                    Contador = (await reader.ReadAsync<int>()).FirstOrDefault(),
-                    Itens = (await reader.ReadAsync<Item>()).ToList()
-                };
-            }
-        }
+        //public async Task<ItemContainer> GetItemsEContadorAsync()
+        //{
+        //    using (var conn = _db.Connection)
+        //    {
+        //        string query =
+        //            @"SELECT COUNT(*) FROM item";
+        //        var reader = await conn.QueryMultipleAsync(sql: query);
+        //        return new ItemContainer
+        //        {
+        //            Contador = (await reader.ReadAsync<int>()).FirstOrDefault(),
+        //            Itens = (await reader.ReadAsync<Item>()).ToList()
+        //        };
+        //    }
+        //}
         public async Task<int> SaveAsync(Item novoItem)
         {
             using (var conn = _db.Connection)
             {
-                string command = @"NSERT INTO item(descricao, valor, qtdItem)
+                string command = @"INSERT INTO item(descricao, valor, qtdItem)
     		VALUES(@descricao, @valor, @qtdItem)";
                 var result = await conn.ExecuteAsync(sql: command, param: novoItem);
                 return result;

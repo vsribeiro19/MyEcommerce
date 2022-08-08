@@ -1,16 +1,32 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace WebApplication1.Controllers
+namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PedidoController : ControllerBase
+    public class PedidoController : Controller
     {
-        [HttpGet]
-        public string ObterNome()
+        private readonly IPedidoRepository _pedidoRepo;
+        public PedidoController(IPedidoRepository pedidoRepo)
         {
-            return "teste";
+            _pedidoRepo = pedidoRepo;
+        }
+        [HttpGet]
+        [Route("getAllPedidos")]
+        public async Task<IActionResult> GetPedidosAsync()
+        {
+            var result = await _pedidoRepo.GetPedidoAsync();
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("getById")]
+        public async Task<IActionResult> GetTodoPedidoByIdAsync(int id)
+        {
+            var pedido = await _pedidoRepo.GetPedidoByIdAsync(id);
+            return Ok(pedido);
         }
     }
 }

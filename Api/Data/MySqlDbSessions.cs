@@ -2,7 +2,7 @@
 using System;
 using System.Data;
 
-namespace WebApplication1.Data
+namespace Api.Data
 {
 
     public class MySqlDbSession : IDbSession, IDisposable
