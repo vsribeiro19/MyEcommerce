@@ -1,57 +1,41 @@
-CREATE TABLE [pedido] (
-	idPedido int IDENTITY(1,1) NOT NULL,
-	descricaoPedido VARCHAR(100) NOT NULL,
-	valorTotal real NOT NULL,
-	idItem int not null,
-	idCliente int not null,
-	CONSTRAINT [pk_pedido] PRIMARY KEY CLUSTERED (idPedido)
-	);
+-- CREATE TRIGGER
+CREATE TRIGGER tr_itemPedido AFTER INSERT ON item
+for each row INSERT INTO pedido (idItem,idCliente,totalCompra) values (NEW.idItem,NEW.idCliente, NEW.valor);
 
-CREATE TABLE [item] (
-	idItem int IDENTITY(10,10),
-	descricaoItem varchar(100) not null,
-	qtdItem int,
-	valor float not null,
-	CONSTRAINT [pk_item] PRIMARY KEY CLUSTERED (idItem)
-);
+CREATE TRIGGER tr_itemPedido AFTER INSERT ON cliente
+for each row INSERT INTO item (IdCliente,nomeComprador,cpf,email) values (NEW.idCliente,NEW.nome,NEW.cpf, NEW.email);
+DROP trigger tr_itemPedido;
 
-ALTER TABLE pedido ALTER COLUMN valorTotal money
-ALTER TABLE item DROP COLUMN idCliente
+-- FIM TRIGGER
 
-CREATE TABLE [cliente]
-(
-idCliente int identity(1,1) not null,
-nomeCompleto varchar(40) not null,
-email varchar(20) not null,
-cpf varchar(11) not null,
-CONSTRAINT [pk_cliente] PRIMARY KEY CLUSTERED (idCliente)
-)
 
--- Tabela Pedido tem como chave estrangeira a tabela Item
--- Tabela Item tem como chave estrangeira a tabela Cliente
+delete idItem from item where idItem = 0;
+delete idCliente from cliente where idCliente= 1;
+SELECT * FROM ITEM;
+SELECT * FROM CLIENTE;
+delete idCliente from  cliente where idCliente > 1;
+SELECT * FROM PEDIDO;
 
---COMANDO PARA ADICIONAR CHAVE ESTRANGEIRA NA TABELA PEDIDO
-ALTER TABLE [item] WITH NOCHECK ADD CONSTRAINT [fk_cliente_item] 
-FOREIGN KEY ([idCliente]) REFERENCES [cliente] ([idCliente]);
+INSERT INTO cliente (nome,cpf,email) VALUES ('Aurora','236549821056', 'aurora@gmail.com');
 
-SELECT * FROM item;
-SELECT * FROM cliente;
-SELECT * FROM pedido;
-delete from pedido where idPedido > 1
---SELECT COUNT(idPedido) as TotalPedidos from pedido where idCLiente = 1
-DELETE FROM pedido WHERE idPedido > 0
+SELECT pe.idPedido,pe.idItem,pe.idCliente, cl.nome,pe.totalCompra, cl.cpf from pedido pe
+inner join item ite on ite.idItem = pe.idItem
+inner join cliente cl on cl.idCliente = pe.idPedido;
 
--- INSERT INTO cliente (nomeCompleto, email, cpf) values ('Victor Ribeiro', 'v@gmail.com', '15679847859');
 
---INSERT INTO cliente (nomeCompleto, email, cpf) values ('James Oliveria', 'jo@email', '1568799800');
---INSERT INTO item (descricaoItem, qtdItem, valor) values ('Notebook Dell', 2, 3500.00);
+SELECT PE.IDPEDIDO, PE.IDITEM, PE.IDCLIENTE FROM PEDIDO PE
+INNER JOIN ITEM it ON it.idItem = PE.idPedido;
 
-INSERT INTO pedido (descricaoPedido, valorTotal, idItem,idCliente) values ('Pedido COMPRA 2', 35,70,1);
+SELECT ite.descricao,pe.* FROM pedido pe
+                    INNER JOIN item ite on ite.idItem = pe.idItem;
 
-INSERT INTO item (descricaoItem,qtdItem,valor,idCliente) values ('COMPRA 2',3,35,1);
+update item set idCliente = 0 where idItem = 6;
 
-	
 
+INSERT INTO ITEM (descricao, valor, qtdItem, idCliente,link) values ('Televisão 50 polegadas Samsung',3500, 1,2,'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT4W9NcCeA_lh38qwlzoAg_CYbHpPcPJiaC42mM_NRuIqBV9kBH51mKgLysLrFHTW9pyVtn7IMBwA&amp;usqp=CAc');
+INSERT INTO CLIENTE (nome, cpf, email) VALUES ('Victor', '00000000000','v@gmail.com');
+
+ALTER TABLE item ADD CONSTRAINT fk_item_idCliente FOREIGN KEY (idCliente) REFERENCES cliente (idCliente);
 
 
 
