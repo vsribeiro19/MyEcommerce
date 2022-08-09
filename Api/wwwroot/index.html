@@ -5,14 +5,6 @@
     <link rel="stylesheet" href="css/index.css" />
     <title>Home - AppMyEcommerce</title>
     <script src="angular/angular.js"></script>
-   
-    <!--//function clientController($scope, $http) {
-    //    $http.get('https://localhost:44315/api/Item/getAllItems').success(function (data) {
-    //        $scope.listagemItems = data;
-    //    }).error(function () {
-    //        $scope.erro = "Erro ao exibir a listagem de itens.";
-    //    });
-    //}-->
 </head>
 <body ng-controller="ApiCtrl">
     <header>
@@ -20,7 +12,7 @@
             <h1 class="title">MyEcommerce</h1>
             <nav class="nav">
                 <a href="#">Novo Usuário</a>
-                <a href="#">Novo Item</a>
+                <a href="cadastrarItem.html" >Novo Item</a>
             </nav>
         </navbar>
     </header>
@@ -30,12 +22,12 @@
                 <img src="{{item.link}}" />
             </div>
             <div class="descricao_item">
-                <p>
+                <h3>
                     {{item.descricao}}
-                </p>
+                </h3>
             </div>
             <div class="price_item">
-                <h2>{{item.valor}}</h2>
+                <h2> R$ {{item.valor}}</h2>
             </div>
             <div class="buy_item">
                 <button class="btn_buy_item">Comprar agora</button>
@@ -55,7 +47,6 @@
                         $scope.items = data.data;
                     });
                 }
-
                 $scope.listarItems();
             }]);
         })();

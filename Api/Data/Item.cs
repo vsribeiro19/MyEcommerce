@@ -2,7 +2,6 @@
 {
     public class Item
     {
-
         public int IdItem { get; set; } = 0;
         public string Descricao { get; set; } = string.Empty;
         public string Link { get; set; }

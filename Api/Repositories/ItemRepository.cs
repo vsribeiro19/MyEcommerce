@@ -51,8 +51,8 @@ namespace Api.Repositories
         {
             using (var conn = _db.Connection)
             {
-                string command = @"INSERT INTO item(descricao, valor, qtdItem)
-    		VALUES(@descricao, @valor, @qtdItem)";
+                string command = @"INSERT INTO item(descricao, valor, qtdItem,link)
+    		VALUES(@descricao, @valor, @qtdItem,@link)";
                 var result = await conn.ExecuteAsync(sql: command, param: novoItem);
                 return result;
             }
