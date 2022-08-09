@@ -4,29 +4,15 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/index.css" />
     <title>Home - AppMyEcommerce</title>
-    <script>
-        angular.module("Api", []);
-        angular.module("Api").controller("ApiCtrl", function ($scope, $http) {
-            $scope.app = "Teste";
-        });
-
-        var listarItems = function () {
-            $http.get("https://localhost:44315/api/Item/getAllItems").then(function (data) {
-                console.log(data);
-            });
-        }
-
-        listarItems();
-
-                        //function clientController($scope, $http) {
-                        //    $http.get('https://localhost:44315/api/Item/getAllItems').success(function (data) {
-                        //        $scope.listagemItems = data;
-                        //    }).error(function () {
-                        //        $scope.erro = "Erro ao exibir a listagem de itens.";
-                        //    });
-                        //}
-    </script>
-
+    <script src="angular/angular.js"></script>
+   
+    <!--//function clientController($scope, $http) {
+    //    $http.get('https://localhost:44315/api/Item/getAllItems').success(function (data) {
+    //        $scope.listagemItems = data;
+    //    }).error(function () {
+    //        $scope.erro = "Erro ao exibir a listagem de itens.";
+    //    });
+    //}-->
 </head>
 <body ng-controller="ApiCtrl">
     <header>
@@ -38,9 +24,8 @@
             </nav>
         </navbar>
     </header>
-    <h2>{{app}}</h2>
     <section>
-        <div ng-repeat="item in listagemItems" class="card_item">
+        <div ng-repeat="item in items" class="card_item">
             <div class="image_item">
                 <img src="{{item.link}}" />
             </div>
@@ -57,6 +42,24 @@
             </div>
         </div>
     </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script>
+
+        (function () {
+
+            angular.module("Api", []);
+
+            angular.module("Api").controller("ApiCtrl", ['$scope', '$http', function ($scope, $http) {
+                $scope.items = [];
+                $scope.listarItems = function () {
+                    $http.get("https://localhost:44315/api/Item/getAllItems").then(function (data) {
+                        $scope.items = data.data;
+                    });
+                }
+
+                $scope.listarItems();
+            }]);
+        })();
+    </script>
+    <!--<script src="clientController.js"></script>-->
 </body>
 </html>

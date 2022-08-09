@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\wwwroot"
   ],
   "SelectedNode": "\\Api.sln",
   "PreviewInSolutionExplorer": false

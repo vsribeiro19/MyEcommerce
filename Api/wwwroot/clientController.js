@@ -1,12 +1,12 @@
-﻿var app = angular.module('app', []);
-app.controller('clientController', ['$scope', '$http', clientController]);
+﻿//angular.module("Api", []);
+//angular.module("Api").controller("ApiCtrl", function ($scope, $http) {
+//    $scope.app = "Teste";
+//});
 
-function clientController($scope, $http) {
-    $http.get('https://localhost:44315/api/Item/getAllItems').success(function (data) {
-        console.log(data);
-        $scope.listagemItems = data;
-        console.log(data);
-    }).error(function () {
-        $scope.erro = "Erro ao exibir a listagem de itens.";
-    });
-}
+////var listarItems = function () {
+////    $http.get("https://localhost:44315/api/Item/getAllItems").then(function (data) {
+////        console.log(data);
+////    });
+////}
+
+////listarItems();

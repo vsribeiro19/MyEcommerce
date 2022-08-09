@@ -1,3 +1,8 @@
+SELECT * FROM ITEM;
+SELECT * FROM CLIENTE;
+SELECT * FROM PEDIDO;
+
+
 -- CREATE TRIGGER
 CREATE TRIGGER tr_itemPedido AFTER INSERT ON item
 for each row INSERT INTO pedido (idItem,idCliente,totalCompra) values (NEW.idItem,NEW.idCliente, NEW.valor);
@@ -8,13 +13,9 @@ DROP trigger tr_itemPedido;
 
 -- FIM TRIGGER
 
-
 delete idItem from item where idItem = 0;
 delete idCliente from cliente where idCliente= 1;
-SELECT * FROM ITEM;
-SELECT * FROM CLIENTE;
 delete idCliente from  cliente where idCliente > 1;
-SELECT * FROM PEDIDO;
 
 INSERT INTO cliente (nome,cpf,email) VALUES ('Aurora','236549821056', 'aurora@gmail.com');
 
