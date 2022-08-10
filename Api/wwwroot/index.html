@@ -17,7 +17,7 @@
         </navbar>
     </header>
     <section>
-        <div ng-repeat="item in items" class="card_item">
+        <div ng-show="items.length > 0" ng-repeat="item in items" class="card_item">
             <div class="image_item">
                 <img loading="lazy" src="{{item.link}}" />
             </div>
@@ -32,7 +32,8 @@
             <input type="hidden" name="id" value="{{item.idItem}}" />
             <div class="buy_item">
                 <button class="btn_buy_item">Comprar agora</button>
-                <button class="btn_remove_item">Remover item</button>
+                <!--<button ng-click="removeItem(item.idItem)" class="btn_remove_item">Remover item</button>-->
+                <a href="excluirItem.html?id={item.idItem}" ng-click="removeItem(item.idItem)" class="btn_remove_item">Remover item</a>
             </div>
         </div>
     </section>
@@ -49,6 +50,19 @@
                         $scope.items = data.data;
                     });
                 }
+                //$scope.listarItems();
+
+                $scope.removeItem = function (idItem) {
+                    $scope.idItem = null;
+
+                    var data = {
+                        idItem: idItem
+                    };
+                    $http.delete("https://localhost:44315/api/Item/delete", JSON.stringify(idItem)).then(function (response) {
+                        //$scope.idItem = data;
+                    });
+                }
+                $scope.removeItem();
                 $scope.listarItems();
             }]);
         })();
