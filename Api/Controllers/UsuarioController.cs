@@ -2,11 +2,10 @@
 
 namespace Api.Controllers
 {
+    [Route("api/controller")]
+    [ApiController]
     public class UsuarioController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

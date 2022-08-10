@@ -12,25 +12,27 @@
             <a class="title" href="index.html">MyEcommerce</a>
             <nav class="nav">
                 <a href="#">Novo Usuário</a>
-                <a href="cadastrarItem.html" >Novo Item</a>
+                <a href="cadastrarItem.html">Novo Item</a>
             </nav>
         </navbar>
     </header>
     <section>
         <div ng-repeat="item in items" class="card_item">
             <div class="image_item">
-                <img src="{{item.link}}" />
+                <img loading="lazy" src="{{item.link}}" />
             </div>
             <div class="descricao_item">
                 <h3>
-                    {{item.descricao}}
+                    <a href="">{{item.descricao}}</a>
                 </h3>
             </div>
             <div class="price_item">
                 <h2> R$ {{item.valor}}</h2>
             </div>
+            <input type="hidden" name="id" value="{{item.idItem}}" />
             <div class="buy_item">
                 <button class="btn_buy_item">Comprar agora</button>
+                <button class="btn_remove_item">Remover item</button>
             </div>
         </div>
     </section>

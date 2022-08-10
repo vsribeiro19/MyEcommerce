@@ -35,20 +35,12 @@
                 <label for="link" class="font-weight-bold">Link Item</label>
                 <textarea ng-model="link" class="form-control" id="link" rows="3" placeholder="Link do item"></textarea>
             </div>
-            <button ng-click="criarItem(descricao, qtdItem, valorItem,link)" type="submit" class="btn btn-primary">Cadastrar</button>
+            <button ng-click="criarItem(descricao, qtdItem, valorItem,link)" type="submit" class="btn btn-outline-primary">Cadastrar</button>
         </form>
     </div>
     <script src="angular/angular.js"></script>
 
     <script>
-        //angular.module("Api", []);
-        //angular.module("Api").controller("ApiCtrl", ['$scope', '$http', function ($scope, $http) {
-        //    var url = "https://localhost:44315/api/Item/create", config = 'contenttype';
-        //    $http.post(url, config).then(function (data) {
-        //        console.log(data);
-        //    })
-        //}]);
-
         var app = angular.module('Api', []);
         app.controller('ApiCtrl', function ($scope, $http) {
 
@@ -73,10 +65,8 @@
                     link: link
                 };
 
-                console.log(data); 
-
                 $http.post("https://localhost:44315/api/Item/create", JSON.stringify(data)).then(function (response) {
-                    $scope.criarItem = data;
+                    //$scope.criarItem = data;
                 }, function (response) {
 
                     $scope.msg = "Service not Exists";
@@ -88,7 +78,6 @@
                     $scope.headers = response.headers();
                 });
             };
-            //$scope.criarItem();
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
