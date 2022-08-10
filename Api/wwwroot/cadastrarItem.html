@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="CadItem">
+<html ng-app="Api">
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/index.css" />
@@ -7,49 +7,89 @@
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Home - AppMyEcommerce</title>
 </head>
-<body ng-controller="CadItemCtrl">
+<body>
     <header>
         <navbar class="navbar">
-            <h1 class="title">MyEcommerce</h1>
+            <a class="title" href="index.html">MyEcommerce</a>
             <nav class="nav">
                 <a href="#">Novo Usuário</a>
                 <a href="cadastrarItem.html">Novo Item</a>
             </nav>
         </navbar>
     </header>
-    <div class="container mt-5">
-        <form name="cadItemForm">
+    <div ng-controller="ApiCtrl" class="container mt-5">
+        <form>
             <div class="form-group">
                 <label for="descricao" class="font-weight-bold">Descrição do Item</label>
                 <input ng-required="true" ng-model="descricao" type="text" class="form-control" id="descricao" placeholder="Informe a descrição do item">
             </div>
             <div class="form-group">
                 <label for="qtdItem" class="font-weight-bold">Quantidade Item</label>
-                <input type="text" class="form-control" id="qtdItem" placeholder="Informe a quantidade do item">
+                <input type="text" ng-model="qtdItem" class="form-control" id="qtdItem" placeholder="Informe a quantidade do item">
             </div>
             <div class="form-group">
                 <label for="valorItem" class="font-weight-bold">Valor Item</label>
-                <input type="text" class="form-control" id="qtdItem" placeholder="R$ 00,00">
+                <input type="text" ng-model="valorItem" class="form-control" id="valorItem" placeholder="R$ 00,00">
             </div>
             <div class="form-group">
                 <label for="link" class="font-weight-bold">Link Item</label>
-                <textarea class="form-control" id="link" rows="3" placeholder="Link do item"></textarea>
+                <textarea ng-model="link" class="form-control" id="link" rows="3" placeholder="Link do item"></textarea>
             </div>
-            <button ng-click="criarItem" type="submit" class="btn btn-primary">Cadastrar</button>
+            <button ng-click="criarItem(descricao, qtdItem, valorItem,link)" type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
     </div>
     <script src="angular/angular.js"></script>
 
     <script>
-        angular.module("CadItem", []);
-        angular.module("CadItem").controller("CadItemCtrl", ['$scope', '$http', function ($scope, $http) {
-            $scope.criarItem = function (item) {
-                $http.post("https://localhost:44315/api/Item/create", item).then(function (data) {
-                    /*$scope.cadItemForm.push({ descricao: descricao });*/
+        //angular.module("Api", []);
+        //angular.module("Api").controller("ApiCtrl", ['$scope', '$http', function ($scope, $http) {
+        //    var url = "https://localhost:44315/api/Item/create", config = 'contenttype';
+        //    $http.post(url, config).then(function (data) {
+        //        console.log(data);
+        //    })
+        //}]);
+
+        var app = angular.module('Api', []);
+        app.controller('ApiCtrl', function ($scope, $http) {
+
+            $scope.descricao = null;
+
+            $scope.qtdItem  = null;
+
+            $scope.valorItem  = null;
+
+            $scope.link = null;
+
+            $scope.criarItem = function (descricao, qtdItem, valorItem, link) {
+
+                var data = {
+
+                    descricao: descricao,
+
+                    qtdItem: qtdItem,
+
+                    valorItem: valorItem,
+
+                    link: link
+                };
+
+                console.log(data); 
+
+                $http.post("https://localhost:44315/api/Item/create", JSON.stringify(data)).then(function (response) {
+                    $scope.criarItem = data;
+                }, function (response) {
+
+                    $scope.msg = "Service not Exists";
+
+                    $scope.statusval = response.status;
+
+                    $scope.statustext = response.statusText;
+
+                    $scope.headers = response.headers();
                 });
-            }
-            $scope.criarItem();
-        }]);
+            };
+            //$scope.criarItem();
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
