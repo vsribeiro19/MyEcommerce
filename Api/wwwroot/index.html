@@ -17,23 +17,24 @@
         </navbar>
     </header>
     <section>
-        <div ng-show="items.length > 0" ng-repeat="item in items" class="card_item">
+        <div ng-repeat="item in items" class="card_item">
             <div class="image_item">
-                <img loading="lazy" src="{{item.link}}" />
+                <img src="{{item.link}}" />
             </div>
             <div class="descricao_item">
                 <h3>
-                    <a href="">{{item.descricao}}</a>
+                    {{item.descricao}}
                 </h3>
             </div>
             <div class="price_item">
-                <h2> R$ {{item.valor}}</h2>
+                <h2>
+                    {{item.valor}}
+                </h2>
             </div>
             <input type="hidden" name="id" value="{{item.idItem}}" />
             <div class="buy_item">
                 <button class="btn_buy_item">Comprar agora</button>
-                <!--<button ng-click="removeItem(item.idItem)" class="btn_remove_item">Remover item</button>-->
-                <a href="excluirItem.html?id={item.idItem}" ng-click="removeItem(item.idItem)" class="btn_remove_item">Remover item</a>
+                <button ng-click="removeItem(item.idItem)" class="btn_remove_item">Remover item</button>
             </div>
         </div>
     </section>
@@ -50,20 +51,14 @@
                         $scope.items = data.data;
                     });
                 }
-                //$scope.listarItems();
+                $scope.listarItems();
 
                 $scope.removeItem = function (idItem) {
-                    $scope.idItem = null;
-
-                    var data = {
-                        idItem: idItem
-                    };
-                    $http.delete("https://localhost:44315/api/Item/delete", JSON.stringify(idItem)).then(function (response) {
-                        //$scope.idItem = data;
-                    });
+                    $http.delete("https://localhost:44315/api/Item/delete?id=" + idItem)
+                        .then(function () {
+                            $scope.listarItems();
+                        });
                 }
-                $scope.removeItem();
-                $scope.listarItems();
             }]);
         })();
     </script>

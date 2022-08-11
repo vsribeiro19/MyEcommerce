@@ -33,26 +33,12 @@ namespace Api.Repositories
                 return item;
             }
         }
-        //public async Task<ItemContainer> GetItemsEContadorAsync()
-        //{
-        //    using (var conn = _db.Connection)
-        //    {
-        //        string query =
-        //            @"SELECT COUNT(*) FROM item";
-        //        var reader = await conn.QueryMultipleAsync(sql: query);
-        //        return new ItemContainer
-        //        {
-        //            Contador = (await reader.ReadAsync<int>()).FirstOrDefault(),
-        //            Itens = (await reader.ReadAsync<Item>()).ToList()
-        //        };
-        //    }
-        //}
         public async Task<int> SaveAsync(Item novoItem)
         {
             using (var conn = _db.Connection)
             {
-                string command = @"INSERT INTO item(descricao, valor, qtdItem,link)
-    		VALUES(@descricao, @valor, @qtdItem,@link)";
+                string command = @"INSERT INTO item (descricao,qtdItem,valor,link)
+    		VALUES(@descricao,@qtdItem,@valor,@link)";
                 var result = await conn.ExecuteAsync(sql: command, param: novoItem);
                 return result;
             }
