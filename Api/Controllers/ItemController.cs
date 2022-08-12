@@ -35,7 +35,7 @@ namespace Api.Controllers
             var result = await _itemRepo.SaveAsync(novoItem);
             return Ok(result);
         }
-        [HttpPost]
+        [HttpPut]
         [Route("update")]
         public async Task<IActionResult> UpdateTodoStatusAsync(Item atualizaItem)
         {

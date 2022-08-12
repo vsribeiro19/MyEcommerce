@@ -1,12 +1,11 @@
-﻿﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="Api">
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <title>Cadastrar item - AppMyEcommerce</title>
+    <title>Editar item - AppMyEcommerce</title>
 </head>
 <body>
     <header>
@@ -19,13 +18,16 @@
         </navbar>
     </header>
     <div class="container">
-        <h2 class="text-center"><span class="badge badge-success">Cadastrar item</span></h2>
+       <h2 class="text-center"><span class="badge badge-info">Editar item</span></h2>
+    </div>
+    <div ng-show="success" class="alert alert-success" role="alert">
+        <h2>{{message}}</h2>
     </div>
     <div ng-controller="ApiCtrl" class="container mt-5">
-        <form name="cadItem" ng-submit="submitCadItem()">
+        <form name="lstItem">
             <div class="form-group">
                 <label for="descricao" class="font-weight-bold">Descrição do Item</label>
-                <input ng-model="descricao" type="text" class="form-control" id="descricao" placeholder="Informe a descrição do item" required>
+                <input ng-required="true" ng-model="descricao" type="text" class="form-control" id="descricao" placeholder="Informe a descrição do item" required>
             </div>
             <div class="form-group">
                 <label for="qtdItem" class="font-weight-bold">Quantidade Item</label>
@@ -39,53 +41,16 @@
                 <label for="link" class="font-weight-bold">Link Item</label>
                 <textarea ng-model="link" class="form-control" id="link" rows="3" placeholder="Link do item" required></textarea>
             </div>
-            <button ng-click="criarItem(descricao,qtdItem,valor,link)" ng-disabled="cadItem.$invalid" type="submit" class="btn btn-outline-primary">Cadastrar</button>
+            <button ng-click="atualizaItem(descricao,qtdItem,valor,link)" ng-disabled="cadItem.$invalid" type="submit" class="btn btn-outline-primary">Cadastrar</button>
         </form>
-        <!--<div n--><!--g-show="criarItem.valid" class="alert alert-success" role="alert">
-            <h2>Cadastro realizado com sucesso</h2>
-        </div>-->
     </div>
     <script src="angular/angular.js"></script>
 
     <script>
         var app = angular.module('Api', []);
         app.controller('ApiCtrl', function ($scope, $http) {
-
-            $scope.descricao;
-
-            $scope.qtdItem;
-
-            $scope.valor;
-
-            $scope.link;
-
-            $scope.criarItem = function (descricao, qtdItem, valor, link) {
-
-                var data = {
-
-                    descricao: descricao,
-
-                    qtdItem: qtdItem,
-
-                    valor: valor,
-
-                    link: link
-                };
-                $http.post("https://localhost:44315/api/Item/create", data).then(function (response) {
-                    $scope.success = false;
-                    //if (response.status === 200) {
-                    //    $scope.success = true;
-                    //    $scope.message = "O item {data.descricao} foi cadastrado com sucesso!";
-                    //    //window.location.href = 'https://localhost:44315/index.html';
-                    //    console.log($scope.message);
-                    //};
-                    //if (status === 200) {
-                    //    $scope.success = true;
-                    //    $scope.message = "O item {descricao} foi cadastrado com sucesso!";
-                    //}
-                    //console.log(response);
-                });
-            };
+            $scope.listarItem();
+            console.log($scope.listarItem); 
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

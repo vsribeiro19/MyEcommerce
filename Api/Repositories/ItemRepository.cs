@@ -47,7 +47,9 @@ namespace Api.Repositories
         {
             using (var conn = _db.Connection)
             {
-                string command = @"UPDATE item SET descricao = @descricao WHERE IdItem = @idItem";
+                string command = @"UPDATE item SET descricao = @descricao,
+                                 valor = @valor, qtdItem = @qtdItem, 
+                                 link = @link WHERE IdItem = @idItem";
                 var result = await conn.ExecuteAsync(sql: command, param: atualizaItem);
                 return result;
             }

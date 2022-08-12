@@ -58,7 +58,7 @@ section {
 
 .card_item {
     width: 350px;
-    height: 400px;
+    height: auto;
     border: 1px solid #d5d5d5;
     margin: 20px;
     background-color: #fff;
@@ -68,15 +68,19 @@ section {
 
     .card_item .image_item {
         max-width: 350px;
+        height: 350px;
         margin-top: 10px;
+        padding:5px;
         display:flex;
         justify-content:center;
+        background-size: cover;
+        /*border:1px solid red;*/
     }
 
     .card_item .price_item h2 {
         text-align: center;
         margin-top: 20px;
-        font-size:1.7rem;
+        font-size:2rem;
         font-family: Bahnschrift;
         color: #ff0000;
     }
@@ -92,7 +96,7 @@ section {
         padding: 10px 15px;
         font-weight: 600;
         cursor: pointer;
-        margin-top: 30px;
+        margin: 20px 5px;
     }
 
 .btn_buy_item {
@@ -121,9 +125,9 @@ section {
         transition: ease-in .1s;
     }
 
-.card_item .descricao_item h3 {
+.card_item .descricao_item h2 {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
     text-transform: capitalize;
     /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
     font-family: Bahnschrift;
