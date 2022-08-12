@@ -5,7 +5,7 @@
         public int IdItem { get; set; }
         public string Descricao { get; set; }
         public int QtdItem { get; set; }
-        public float ValorItem { get; set; }
+        public float Valor { get; set; }
         public string Link { get; set; }
     }
 }

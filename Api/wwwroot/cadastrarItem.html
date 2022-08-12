@@ -30,13 +30,13 @@
             </div>
             <div class="form-group">
                 <label for="valorItem" class="font-weight-bold">Valor Item</label>
-                <input type="text" ng-model="valorItem" class="form-control" id="valorItem" placeholder="R$ 00,00">
+                <input type="text" ng-model="valor" class="form-control" id="valorItem" placeholder="R$ 00,00">
             </div>
             <div class="form-group">
                 <label for="link" class="font-weight-bold">Link Item</label>
                 <textarea ng-model="link" class="form-control" id="link" rows="3" placeholder="Link do item"></textarea>
             </div>
-            <button ng-click="criarItem(descricao,qtdItem,valorItem,link)" type="submit" class="btn btn-outline-primary">Cadastrar</button>
+            <button ng-click="criarItem(descricao,qtdItem,valor,link)" type="submit" class="btn btn-outline-primary">Cadastrar</button>
         </form>
     </div>
     <script src="angular/angular.js"></script>
@@ -49,11 +49,11 @@
 
             $scope.qtdItem;
 
-            $scope.valorItem;
+            $scope.valor;
 
             $scope.link;
 
-            $scope.criarItem = function (descricao, qtdItem, valorItem, link) {
+            $scope.criarItem = function (descricao, qtdItem, valor, link) {
 
                 var data = {
 
@@ -61,12 +61,14 @@
 
                     qtdItem: qtdItem,
 
-                    valorItem: valorItem*1,
+                    valor: valor,
 
                     link: link
                 };
 
-                $http.post("https://localhost:44315/api/Item/create",data)
+                $http.post("https://localhost:44315/api/Item/create", data).then(function (response) {
+                    console.log(response);
+                });
             };
         });
     </script>

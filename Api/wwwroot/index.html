@@ -16,6 +16,9 @@
             </nav>
         </navbar>
     </header>
+    <h2 class="title_products" ng-if="items < 1">
+        Não há produtos cadastrados.
+    </h2>
     <section>
         <div ng-repeat="item in items" class="card_item">
             <div class="image_item">
@@ -28,7 +31,7 @@
             </div>
             <div class="price_item">
                 <h2>
-                    {{item.valor}}
+                    R$ {{item.valor}}
                 </h2>
             </div>
             <input type="hidden" name="id" value="{{item.idItem}}" />
