@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: ecommerce
+-- Host: localhost    Database: ecommerce
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -37,7 +37,6 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Teste','13245698780','teste@gmail.com'),(2,'Victor','00000000000','v@gmail.com'),(4,'Aurora','236549821056','aurora@gmail.com');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,12 +49,12 @@ DROP TABLE IF EXISTS `item`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `item` (
   `idItem` int NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(35) NOT NULL,
+  `descricao` varchar(100) NOT NULL,
   `valor` float NOT NULL,
   `qtdItem` int NOT NULL,
   `link` text,
   PRIMARY KEY (`idItem`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=268 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +63,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (12,'Televisão 50 polegadas Samsung',3500,1,'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT4W9NcCeA_lh38qwlzoAg_CYbHpPcPJiaC42mM_NRuIqBV9kBH51mKgLysLrFHTW9pyVtn7IMBwA&amp;usqp=CAc'),(13,'Televisão 50 polegadas Samsung',3500,1,'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR4XxkaU7Ada_kNRgNFW6mAFGZpp-DJj1YOIobuXK074r2_T2HdlHB2Hch6Za7qg8aItPD5pXxxow&usqp=CAc'),(20,'cadeira gamer thunderx3',1750,5,'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR5Eqt8yUDaTkDnwJ5eFTROdUrhqn2gmAR3MQViEY7jlkFDHgWs_QGMKi9Fykdv&usqp=CAc');
+INSERT INTO `item` VALUES (263,'Iphone XR',4200,3,'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRtCYQ_sWXiq60SOuIOa6VdxVneyFEA3iY605bd7iywh6cCgq5LBmKWZyEIniKlv-8c32QlIjGB3Js&usqp=CAc');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,4 +117,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-09 15:29:42
+-- Dump completed on 2022-08-15 16:51:05

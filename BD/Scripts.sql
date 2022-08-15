@@ -2,6 +2,14 @@ SELECT * FROM ITEM;
 SELECT * FROM CLIENTE;
 SELECT * FROM PEDIDO;
 
+DELETE FROM item where idItem>= 81;
+
+UPDATE item set descricao = 'Teste', valor = 2000, qtdItem = 200 where idItem = 245;
+
+DESC item;
+
+INSERT INTO ITEM (descricao, qtdItem,valor,link) VALUES ('teste invertido', 5, 3500, '');
+
 
 -- CREATE TRIGGER
 CREATE TRIGGER tr_itemPedido AFTER INSERT ON item
@@ -33,7 +41,7 @@ SELECT ite.descricao,pe.* FROM pedido pe
 update item set idCliente = 0 where idItem = 6;
 
 
-INSERT INTO ITEM (descricao, valor, qtdItem, idCliente,link) values ('Televisão 50 polegadas Samsung',3500, 1,2,'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT4W9NcCeA_lh38qwlzoAg_CYbHpPcPJiaC42mM_NRuIqBV9kBH51mKgLysLrFHTW9pyVtn7IMBwA&amp;usqp=CAc');
+INSERT INTO ITEM (descricao, qtdItem, valor,link) values ('Televisão 50 polegadas Samsung',1,3500,'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT4W9NcCeA_lh38qwlzoAg_CYbHpPcPJiaC42mM_NRuIqBV9kBH51mKgLysLrFHTW9pyVtn7IMBwA&amp;usqp=CAccliente');
 INSERT INTO CLIENTE (nome, cpf, email) VALUES ('Victor', '00000000000','v@gmail.com');
 
 ALTER TABLE item ADD CONSTRAINT fk_item_idCliente FOREIGN KEY (idCliente) REFERENCES cliente (idCliente);

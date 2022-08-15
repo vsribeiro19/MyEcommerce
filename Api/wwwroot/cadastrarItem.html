@@ -73,17 +73,6 @@
                 };
                 $http.post("https://localhost:44315/api/Item/create", data).then(function (response) {
                     $scope.success = false;
-                    //if (response.status === 200) {
-                    //    $scope.success = true;
-                    //    $scope.message = "O item {data.descricao} foi cadastrado com sucesso!";
-                    //    //window.location.href = 'https://localhost:44315/index.html';
-                    //    console.log($scope.message);
-                    //};
-                    //if (status === 200) {
-                    //    $scope.success = true;
-                    //    $scope.message = "O item {descricao} foi cadastrado com sucesso!";
-                    //}
-                    //console.log(response);
                 });
             };
         });

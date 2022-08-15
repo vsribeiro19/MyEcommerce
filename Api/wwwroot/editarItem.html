@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Editar item - AppMyEcommerce</title>
+    <script src="angular/angular.js"></script>
+    <script src="editarItemCtrl.js"></script>
 </head>
 <body>
     <header>
@@ -18,16 +20,18 @@
         </navbar>
     </header>
     <div class="container">
-       <h2 class="text-center"><span class="badge badge-info">Editar item</span></h2>
+        <h2 class="text-center"><span class="badge badge-info">Editar item</span></h2>
     </div>
-    <div ng-show="success" class="alert alert-success" role="alert">
+    <!--<div ng-show="success" class="alert alert-success" role="alert">
         <h2>{{message}}</h2>
-    </div>
+    </div>-->
     <div ng-controller="ApiCtrl" class="container mt-5">
         <form name="lstItem">
             <div class="form-group">
+                <!--<input type="text" value="idItem " />-->
                 <label for="descricao" class="font-weight-bold">Descrição do Item</label>
                 <input ng-required="true" ng-model="descricao" type="text" class="form-control" id="descricao" placeholder="Informe a descrição do item" required>
+
             </div>
             <div class="form-group">
                 <label for="qtdItem" class="font-weight-bold">Quantidade Item</label>
@@ -44,14 +48,21 @@
             <button ng-click="atualizaItem(descricao,qtdItem,valor,link)" ng-disabled="cadItem.$invalid" type="submit" class="btn btn-outline-primary">Cadastrar</button>
         </form>
     </div>
-    <script src="angular/angular.js"></script>
-
     <script>
-        var app = angular.module('Api', []);
-        app.controller('ApiCtrl', function ($scope, $http) {
-            $scope.listarItem();
-            console.log($scope.listarItem); 
-        });
+        (function () {
+
+            angular.module("Api", []);
+            angular.module("Api").controller("ApiCtrl", ['$scope', '$http', function ($scope, $http) {
+                $scope.items = {};
+                //var buscaPorId = function (idItem) {
+                //    $http.get("https://localhost:44315/api/Item/getById?id=" + idItem).then(function (data) {
+                //        $scope.idItem = data;
+                //        console.log(data);
+                //    });
+                //}
+                listarItemPorId();   
+            }]);
+        })();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

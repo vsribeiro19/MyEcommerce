@@ -26,7 +26,7 @@
             </div>
             <div class="descricao_item">
                 <h2>
-                    <a style="color:#242424" href="editarItem.html">{{item.descricao}}</a>
+                    <a ng-click="listarItemPorId(idItem)" style="color:#242424" href="https://localhost:44315/editarItem.html">{{item.descricao}}</a>
                 </h2>
             </div>
             <div class="price_item">
@@ -34,7 +34,7 @@
                     R$ {{item.valor}}
                 </h2>
             </div>
-            <input type="hidden" name="id" value="{{item.idItem}}" />
+            <input type="text" name="id" value="{{item.idItem}}" />
             <div class="buy_item">
                 <button class="btn_buy_item">Comprar agora</button>
                 <button ng-click="removeItem(item.idItem)" class="btn_remove_item">Remover item</button>
@@ -44,27 +44,26 @@
     <script>
 
         (function () {
-
             angular.module("Api", []);
 
             angular.module("Api").controller("ApiCtrl", ['$scope', '$http', function ($scope, $http) {
                 $scope.items = [];
-                $scope.listarItems = function () {
+                var listagem = function () {
                     $http.get("https://localhost:44315/api/Item/getAllItems").then(function (data) {
                         $scope.items = data.data;
                     });
                 }
-                $scope.listarItems();
+
+                listagem();
 
                 $scope.removeItem = function (idItem) {
                     $http.delete("https://localhost:44315/api/Item/delete?id=" + idItem)
                         .then(function () {
-                            $scope.listarItems();
+                            listagem();
                         });
                 }
             }]);
         })();
     </script>
-    <!--<script src="clientController.js"></script>-->
 </body>
 </html>
