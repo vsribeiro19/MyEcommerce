@@ -26,7 +26,7 @@
             </div>
             <div class="descricao_item">
                 <h2>
-                    <a ng-click="listarItemPorId(idItem)" style="color:#242424" href="https://localhost:44315/editarItem.html">{{item.descricao}}</a>
+                    <a href="editarItem.html" ng-click="pegaIdItem(item.idItem)" style="color:#242424">{{item.descricao}}</a>
                 </h2>
             </div>
             <div class="price_item">
@@ -34,7 +34,7 @@
                     R$ {{item.valor}}
                 </h2>
             </div>
-            <input type="text" name="id" value="{{item.idItem}}" />
+            <input type="hidden" name="id" value="{{item.idItem}}" />
             <div class="buy_item">
                 <button class="btn_buy_item">Comprar agora</button>
                 <button ng-click="removeItem(item.idItem)" class="btn_remove_item">Remover item</button>
@@ -51,6 +51,7 @@
                 var listagem = function () {
                     $http.get("https://localhost:44315/api/Item/getAllItems").then(function (data) {
                         $scope.items = data.data;
+/*                        console.log($scope.items);*/
                     });
                 }
 
@@ -60,6 +61,13 @@
                     $http.delete("https://localhost:44315/api/Item/delete?id=" + idItem)
                         .then(function () {
                             listagem();
+                        });
+                }
+
+                var pegaIdItem = $scope.pegaIdItem = function (idItem) {
+                    $http.get("https://localhost:44315/api/Item/getById?id=" + idItem)
+                        .then(function (response) {
+                            window.location = "https://localhost:44315/editarItem.html?id=" + idItem;
                         });
                 }
             }]);

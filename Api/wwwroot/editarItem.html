@@ -7,7 +7,6 @@
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Editar item - AppMyEcommerce</title>
     <script src="angular/angular.js"></script>
-    <script src="editarItemCtrl.js"></script>
 </head>
 <body>
     <header>
@@ -45,7 +44,7 @@
                 <label for="link" class="font-weight-bold">Link Item</label>
                 <textarea ng-model="link" class="form-control" id="link" rows="3" placeholder="Link do item" required></textarea>
             </div>
-            <button ng-click="atualizaItem(descricao,qtdItem,valor,link)" ng-disabled="cadItem.$invalid" type="submit" class="btn btn-outline-primary">Cadastrar</button>
+            <button ng-click="atualizaItem(descricao,qtdItem,valor,link)" ng-disabled="lstItem.$invalid" type="submit" class="btn btn-outline-primary">Cadastrar</button>
         </form>
     </div>
     <script>
@@ -53,14 +52,32 @@
 
             angular.module("Api", []);
             angular.module("Api").controller("ApiCtrl", ['$scope', '$http', function ($scope, $http) {
-                $scope.items = {};
-                //var buscaPorId = function (idItem) {
-                //    $http.get("https://localhost:44315/api/Item/getById?id=" + idItem).then(function (data) {
-                //        $scope.idItem = data;
-                //        console.log(data);
-                //    });
-                //}
-                listarItemPorId();   
+
+                //$scope.descricao = ;
+
+                $scope.qtdItem;
+
+                $scope.valor;
+
+                $scope.link;
+
+                $scope.criarItem = function (descricao, qtdItem, valor, link) {
+
+                    var data = {
+
+                        descricao: descricao,
+
+                        qtdItem: qtdItem,
+
+                        valor: valor,
+
+                        link: link
+                    };
+                    $http.get("https://localhost:44315/api/Item/update", data).then(function (response) {
+                        $scope.success = false;
+                    });
+                };
+
             }]);
         })();
     </script>
